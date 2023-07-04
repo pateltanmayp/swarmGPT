@@ -12,7 +12,7 @@ def main():
     allcfs = swarm.allcfs
 
     traj1 = Trajectory()
-    traj1.loadcsv(Path(__file__).parent / "data/figure8.csv")
+    traj1.loadcsv(Path(__file__).parent / "data/heart_traj.csv")
 
     TRIALS = 1
     TIMESCALE = 1.0
