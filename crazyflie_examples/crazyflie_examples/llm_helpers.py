@@ -21,10 +21,6 @@ import numpy as np
 import yaml
 from yaml.loader import SafeLoader
 
-OPENAI_API_KEY = "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"
-HF_API_KEY = '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'
-DL_API_KEY = "eyJhbGciOiJIUzUxMiIsImlhdCI6MTY4NjkyNzA0OSwiZXhwIjoxNzE4NTQ5Mzk5fQ.eyJpZCI6InRhbm1heSJ9.oezo8QHgHbRx_66dmx59zP5cmImML3DCP9E22LUXftg8azTaM565hx5Tj7ZthAUfheovRiwWmIFaVCDbgAGv_g"
-
 class MusicChain(LLMChain):
     """
     A custom chain for music processing.
@@ -157,11 +153,7 @@ class Choreographer():
         self.configure_llm() # Keep drone info same between songs, just update the LLM setup
 
     def configure_llm(self):
-        openai.api_key = OPENAI_API_KEY
-
-        os.environ['OPENAI_API_KEY'] = OPENAI_API_KEY
-        os.environ['HUGGINGFACEHUB_API_TOKEN'] = HF_API_KEY
-        os.environ['ACTIVELOOP_TOKEN'] = DL_API_KEY
+        openai.api_key = os.getenv('OPENAI_API_KEY')
 
         llm = OpenAIChat(max_tokens=10000, model='gpt-3.5-turbo-16k')
 
