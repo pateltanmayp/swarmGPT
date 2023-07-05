@@ -23,8 +23,9 @@ def process_input(user_input, interface):
 
     prompt_types = {'I': 'initial', 'R': 'redo', 'C': 'collision-avoidance', 'M': 'custom'}
     custom_text = ""
-
-    output = cg.choreograph(beat_times, prompt_types[user_input], custom_text)
+    
+    input = "I"
+    output = cg.choreograph(beat_times, prompt_types[input], custom_text)
     add_history(interface, None, "\nFormatted LLM output: {output}")
     
     data = cg.get_waypoints(output)
