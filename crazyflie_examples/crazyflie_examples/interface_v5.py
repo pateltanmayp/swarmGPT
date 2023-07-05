@@ -29,6 +29,7 @@ def process_input(user_input, interface):
     add_history(interface, None, "\nFormatted LLM output: {output}")
     
     data = cg.get_waypoints(output)
+    print("\n\n----\nDATA:\n",data)
 
     return  "", data
 
