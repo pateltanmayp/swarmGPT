@@ -173,7 +173,7 @@ AI: """)
             memory=ConversationBufferMemory(memory_key="chat_history")
         )
 
-        self.preset_prompt_templates["initial"] = PromptTemplate(input_variables=["song", "artist", "number", "beat_times", "starting_pos", "format_instructions"],
+        self.preset_prompt_templates["initial"] = PromptTemplate(input_variables=["song", "number", "beat_times", "starting_pos", "format_instructions"],
             template="""Choreograph a harmonized, symmetric dance for {number} drone that reflects the mood of the song {song}. \
 The permissible flying region is a cube with a side length of 2 metres, centred at the origin. {starting_pos} \
 Format your output as a series of waypoints for each drone, one at every beat in the song. The beat times are {beat_times}. \
