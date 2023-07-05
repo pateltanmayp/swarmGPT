@@ -4,8 +4,8 @@ import langchain
 import gradio as gr
 from .llm_helpers import *
 
-MUSIC_DIR = "/home/tanmay/Documents/testing"
-CONFIG_FILE = "/home/tanmay/Documents/ros2_ws/src/crazyswarm2/crazyflie/config/crazyflies.yaml"
+MUSIC_DIR = "/home/sanjmi/experimental"
+CONFIG_FILE = "/home/sanjmi/ros2_ws/src/swarmGPT/crazyflie/config/crazyflies.yaml"
 
 openai.organization = "org-PQJjdyLH3oHidF9FkzWsWXT0"
 openai.api_key = os.getenv("OPENAI_API_KEY")
