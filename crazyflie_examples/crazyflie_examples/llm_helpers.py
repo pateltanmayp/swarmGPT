@@ -153,9 +153,9 @@ class Choreographer():
         # Reset LLM state
         self.all_waypoints = np.zeros((2, 6)) # For concatenated array shape
         self.preset_prompts = {}
-        self.configure_llm() # Keep drone info same between songs, just update the LLM setup
+        self.configure_llm(song) # Keep drone info same between songs, just update the LLM setup
 
-    def configure_llm(self):
+    def configure_llm(self,song):
         openai.api_key = os.getenv('OPENAI_API_KEY')
 
         llm = OpenAIChat(max_tokens=10000, model='gpt-3.5-turbo-16k')
