@@ -4,10 +4,18 @@ from __future__ import annotations
 import numpy as np
 from crazyflie_py import *
 from .llm_helpers import *
-import vlc
+from pathlib import Path
+import vlc, os
 
-MUSIC_DIR = "/home/tanmay/Documents/testing"
-CONFIG_FILE = "/home/tanmay/Documents/ros2_ws/src/crazyswarm2/crazyflie/config/crazyflies.yaml"
+ROOT_DIR = "/home/tanmay/Documents/swarmGPT/src/swarmGPT" # Change as needed
+MUSIC_DIR = os.path.join(ROOT_DIR, "music")
+CONFIG_FILE = os.path.join(ROOT_DIR, "crazyflie/config/crazyflies.yaml")
+
+for root, dirs, files in os.walk(".", topdown=False):
+   for name in files:
+      print(os.path.join(root, name))
+   for name in dirs:
+      print(os.path.join(root, name))
 
 class Waypoint:
     def __init__(self, agent, x, y, z, arrival, duration):

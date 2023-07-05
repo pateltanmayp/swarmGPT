@@ -154,6 +154,7 @@ class Choreographer():
 
     def configure_llm(self):
         openai.api_key = os.getenv('OPENAI_API_KEY')
+        print(openai.api_key)
 
         llm = OpenAIChat(max_tokens=10000, model='gpt-3.5-turbo-16k')
 
