@@ -143,9 +143,9 @@ class Choreographer():
         self.num_drones = len(self.agents.values()) # Number of drones
         print(f"\nNumber of drones detected: {self.num_drones}")
 
-    def set_song(self, song: str, artist: str):
+    def set_song(self, song: str):
         self.song = song
-        self.artist = artist
+        #self.artist = artist
 
         # Reset LLM state
         self.all_waypoints = np.zeros((2, 6)) # For concatenated array shape
@@ -171,7 +171,7 @@ AI: """)
         )
 
         self.preset_prompt_templates["initial"] = PromptTemplate(input_variables=["song", "artist", "number", "beat_times", "starting_pos", "format_instructions"],
-            template="""Choreograph a harmonized, symmetric dance for {number} drone that reflects the mood of the song {song} by {artist}. \
+            template="""Choreograph a harmonized, symmetric dance for {number} drone that reflects the mood of the song {song}. \
 The permissible flying region is a cube with a side length of 2 metres, centred at the origin. {starting_pos} \
 Format your output as a series of waypoints for each drone, one at every beat in the song. The beat times are {beat_times}. \
 Make sure the waypoints will not lead to any collisions between drones. Drones must not arrive at the same waypoints simultaneously, otherwise they will collide. \
