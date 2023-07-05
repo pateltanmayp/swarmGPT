@@ -223,7 +223,7 @@ Make sure the drones don't touch the ground (their z coordinate should always be
 
         # Only initial prompt will contain drone data, etc - not needed in future prompts
         if prompt_type == "initial":
-            prompt = prompt_template.format(song=self.song, artist=self.artist, number=self.num_drones, beat_times=beat_times, starting_pos=starting_pos, format_instructions=format_instructions)
+            prompt = prompt_template.format(song=self.song, number=self.num_drones, beat_times=beat_times, starting_pos=starting_pos, format_instructions=format_instructions)
         elif prompt_type == "custom":
             prompt = prompt_template.format(text=custom_text)
         else:
