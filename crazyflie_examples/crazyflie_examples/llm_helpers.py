@@ -258,7 +258,8 @@ Make sure the drones don't touch the ground (their z coordinate should always be
             self.all_waypoints[:, i+2] /= (np.abs(self.all_waypoints[:, i+2]).max() / self.limits[key]) if self.all_waypoints[:, i+2].max() != 0 and self.all_waypoints[:, i+2].any() > self.limits[key] else 1
 
         #self.all_waypoints_list = self.all_waypoints.tolist()
-        return np.array2string(self.all_waypoints,separator="\n")
+        print(type(np.array2string(self.all_waypoints)))
+        return np.array2string(self.all_waypoints)
 
 def main():
     pass

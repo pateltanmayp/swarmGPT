@@ -31,7 +31,7 @@ def process_input(user_input, interface):
     data = cg.get_waypoints(output)
     print("\n\n----\nDATA:\n",data)
 
-    return  "", data
+    return  user_input, data
 
 #def custom_prompt(user_input, interface):
 
