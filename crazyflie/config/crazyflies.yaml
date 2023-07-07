@@ -27,19 +27,19 @@ robots:
     #    topic_name3: 
     #      frequency: 1
     #      vars: ["acc.x", "acc.y", "acc.z"]
-  cf2:
-    enabled: true
-    uri: radio://0/80/2M/E7E7E7E705
-    initial_position: [0.5, 0, 0]
-    type: cf21  # see robot_types
-    # firmware_params:
-    #   kalman:
-    #     pNAcc_xy: 1.0 # default 0.5
-    #firmware_logging:
-    #  custom_topics:
-    #    topic_name3: 
-    #      frequency: 1
-    #      vars: ["acc.x", "acc.y", "acc.z"]
+  # cf2:
+  #   enabled: true
+  #   uri: radio://0/80/2M/E7E7E7E704
+  #   initial_position: [0.5, 0, 0]
+  #   type: cf21  # see robot_types
+  #   # firmware_params:
+  #   #   kalman:
+  #   #     pNAcc_xy: 1.0 # default 0.5
+  #   #firmware_logging:
+  #   #  custom_topics:
+  #   #    topic_name3: 
+  #   #      frequency: 1
+  #   #      vars: ["acc.x", "acc.y", "acc.z"]
   # cf3:
   #   enabled: true
   #   uri: radio://0/80/2M/E7E7E7E705

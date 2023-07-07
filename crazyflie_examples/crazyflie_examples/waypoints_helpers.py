@@ -1,14 +1,9 @@
 #!/usr/bin/env python
-
 from __future__ import annotations
 import numpy as np
 from crazyflie_py import *
-from .llm_helpers import *
-from .interface_v5 import *
 import vlc
-
-MUSIC_DIR = "/home/sanjmi/experimental"
-CONFIG_FILE = "/home/sanjmi/ros2_ws/src/swarmGPT/crazyflie/config/crazyflies.yaml"
+import os
 
 class Waypoint:
     def __init__(self, agent, x, y, z, arrival, duration):
@@ -46,8 +41,8 @@ def create_waypoints_data_structure(data: np.ndarray) -> List[Waypoint]:
 
     return waypoints
 
-def fly(input, waypoints):
-    p = vlc.MediaPlayer(os.path.join(MUSIC_DIR, f"{input.lower()}.mp3"))
+def fly(cg, waypoints):
+    p = vlc.MediaPlayer(os.path.join(cg.music_dir, f"{cg.song.lower()}.mp3"))
 
     # execute waypoints
     swarm = Crazyswarm()
@@ -81,53 +76,10 @@ def fly(input, waypoints):
     print("Landed")
     p.stop
 
+    print("Killed Crazyflie ROS Server")
 
 def main():
-    # Parameters
-    #song = "We Are The Champions" # input("Enter a name of a song: ")
-    #artist = "Queen" # input("Enter the artist's name: ")
-
-    # Create a new choreographer (LLM-equipped tool), auto-configure drone information (starting positions, cfid's), set the song and arist name
-    '''cg = Choreographer(music_dir=MUSIC_DIR, config_file=CONFIG_FILE, every_n_beats=2, x_lim=1, y_lim=1, z_lim=2)
-    cg.set_song(song=song, artist=artist)
-
-    # Get beat times from song
-    beat_times = cg.get_beats(start_time=38, end_time=75)
-
-    prompt_types = {'I': 'initial', 'R': 'redo', 'C': 'collision-avoidance', 'M': 'custom'}
-    user_input = "I"
-
-    while user_input != "":
-
-        custom_text = input("\nEnter your prompt: ") if user_input == 'M' else ""
-
-        # Get choreography through LLM API query
-        output = cg.choreograph(beat_times, prompt_types[user_input], custom_text)
-        print(f"\nFormatted LLM output: {output}")
-
-        # Load data from text output of LLM
-        data = cg.get_waypoints(output)'''
-
-        # Convert waypoint data into internal waypoint data structure
-
-    ui.launch()
-    input, data = process_input(user_input, interface)
-
-    waypoints = create_waypoints_data_structure(data)
-
-    fly(input, waypoints)
-
-    '''# Print waypoints
-    print("\nParsed waypoints:")
-    for waypoint in waypoints:
-        print(f"{waypoint}")'''
-
-    # Input validation
-    '''user_input = "Invalid"
-    while user_input not in prompt_types.keys() and user_input != '':
-        user_input = input("\nPress enter to get dancing. Press R to reject waypoints and regenerate something more creative. Press C to send a collision-avoidance reminder. Press M to enter a custom prompt...")
-    '''
-   
+    pass
 
 if __name__ == "__main__":
     main()

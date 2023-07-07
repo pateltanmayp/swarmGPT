@@ -232,8 +232,8 @@ Make sure the drones don't touch the ground (their z coordinate should always be
         result = self.chain.predict(prompt=prompt)
         print(f"\nResult: {result}")
 
-        #output = output_parser.parse(result)
-        return result, prompt
+        output = output_parser.parse(result)
+        return output, prompt
         
     def get_waypoints(self, llm_output: dict) -> np.ndarray:
 
