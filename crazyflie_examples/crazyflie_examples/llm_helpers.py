@@ -21,7 +21,6 @@ import numpy as np
 import yaml
 from yaml.loader import SafeLoader
 
-openai.organization = "org-PQJjdyLH3oHidF9FkzWsWXT0"
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 class MusicChain(LLMChain):
@@ -233,8 +232,8 @@ Make sure the drones don't touch the ground (their z coordinate should always be
         result = self.chain.predict(prompt=prompt)
         print(f"\nResult: {result}")
 
-        output = output_parser.parse(result)
-        return output
+        #output = output_parser.parse(result)
+        return result, prompt
         
     def get_waypoints(self, llm_output: dict) -> np.ndarray:
 
@@ -257,9 +256,7 @@ Make sure the drones don't touch the ground (their z coordinate should always be
         for i, key in enumerate(self.limits.keys()):
             self.all_waypoints[:, i+2] /= (np.abs(self.all_waypoints[:, i+2]).max() / self.limits[key]) if self.all_waypoints[:, i+2].max() != 0 and self.all_waypoints[:, i+2].any() > self.limits[key] else 1
 
-        #self.all_waypoints_list = self.all_waypoints.tolist()
-        print(type(np.array2string(self.all_waypoints)))
-        return np.array2string(self.all_waypoints)
+        return self.all_waypoints
 
 def main():
     pass
