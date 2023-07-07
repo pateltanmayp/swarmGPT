@@ -21,6 +21,8 @@ import numpy as np
 import yaml
 from yaml.loader import SafeLoader
 
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
 class MusicChain(LLMChain):
     """
     A custom chain for music processing.
@@ -143,16 +145,16 @@ class Choreographer():
         self.num_drones = len(self.agents.values()) # Number of drones
         print(f"\nNumber of drones detected: {self.num_drones}")
 
-    def set_song(self, song: str, artist: str):
+    def set_song(self, song: str):
         self.song = song
-        self.artist = artist
+        #self.artist = artist
 
         # Reset LLM state
         self.all_waypoints = np.zeros((2, 6)) # For concatenated array shape
         self.preset_prompts = {}
-        self.configure_llm() # Keep drone info same between songs, just update the LLM setup
+        self.configure_llm(song) # Keep drone info same between songs, just update the LLM setup
 
-    def configure_llm(self):
+    def configure_llm(self,song):
         openai.api_key = os.getenv('OPENAI_API_KEY')
         print(openai.api_key)
 
@@ -171,8 +173,8 @@ AI: """)
             memory=ConversationBufferMemory(memory_key="chat_history")
         )
 
-        self.preset_prompt_templates["initial"] = PromptTemplate(input_variables=["song", "artist", "number", "beat_times", "starting_pos", "format_instructions"],
-            template="""Choreograph a harmonized, symmetric dance for {number} drone that reflects the mood of the song {song} by {artist}. \
+        self.preset_prompt_templates["initial"] = PromptTemplate(input_variables=["song", "number", "beat_times", "starting_pos", "format_instructions"],
+            template="""Choreograph a harmonized, symmetric dance for {number} drone that reflects the mood of the song {song}. \
 The permissible flying region is a cube with a side length of 2 metres, centred at the origin. {starting_pos} \
 Format your output as a series of waypoints for each drone, one at every beat in the song. The beat times are {beat_times}. \
 Make sure the waypoints will not lead to any collisions between drones. Drones must not arrive at the same waypoints simultaneously, otherwise they will collide. \
@@ -221,7 +223,7 @@ Make sure the drones don't touch the ground (their z coordinate should always be
 
         # Only initial prompt will contain drone data, etc - not needed in future prompts
         if prompt_type == "initial":
-            prompt = prompt_template.format(song=self.song, artist=self.artist, number=self.num_drones, beat_times=beat_times, starting_pos=starting_pos, format_instructions=format_instructions)
+            prompt = prompt_template.format(song=self.song, number=self.num_drones, beat_times=beat_times, starting_pos=starting_pos, format_instructions=format_instructions)
         elif prompt_type == "custom":
             prompt = prompt_template.format(text=custom_text)
         else:
@@ -232,7 +234,7 @@ Make sure the drones don't touch the ground (their z coordinate should always be
         print(f"\nResult: {result}")
 
         output = output_parser.parse(result)
-        return output
+        return output, prompt
         
     def get_waypoints(self, llm_output: dict) -> np.ndarray:
 
