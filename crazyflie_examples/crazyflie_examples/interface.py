@@ -5,7 +5,7 @@ import gradio as gr
 import theme
 from llm_helpers import Choreographer
 
-from waypoints_helpers import create_waypoints_data_structure, fly
+#from waypoints_helpers import create_waypoints_data_structure, fly
 
 # Find directory with cloned repo
 for root, dirs, files in os.walk('/home/'):
@@ -14,6 +14,7 @@ for root, dirs, files in os.walk('/home/'):
             ROOT_DIR = os.path.abspath(os.path.join(root, name))
 
 MUSIC_DIR = os.path.join(ROOT_DIR, "music")
+CHORUS_DIR = os.path.join(ROOT_DIR, "chorus")
 CONFIG_FILE = os.path.join(ROOT_DIR, "crazyflie/config/crazyflies.yaml")
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -68,6 +69,8 @@ class Interface:
 
         return "Hope you enjoyed the dance!", ""
     
+    def make_invisible(self):
+        return gr.update(visible=False), gr.update(visible=False), gr.update(visible=False)
         
 interface = Interface(False, song_list)
 
@@ -103,7 +106,9 @@ with gr.Blocks(theme=gr.themes.Monochrome()) as ui:
         inputs=None,
         outputs=prompt_type_input
     )
-    #song_input.select(fn =  interface.start, inputs = [song_input], outputs = [ch_output, prompt_output, prompt_type_input, custom_prompt, follow_up_button, run_button])
+    #song_input.select(fn = lambda : gr.update(visible = False), inputs = None, outputs = [prompt_type_input, follow_up_button, run_button])
+    song_input.select(interface.make_invisible, inputs = [], outputs = [prompt_type_input, follow_up_button, run_button])
+
     follow_up_button.click(fn = interface.follow_up, inputs=[prompt_type_input, custom_prompt], outputs=[ch_output, prompt_output, custom_prompt])
     prompt_type_input.select(fn = interface.prompt_type_selected, inputs=[prompt_type_input], outputs=[custom_prompt])
     custom_prompt.submit(fn = interface.follow_up, inputs=[prompt_type_input, custom_prompt], outputs=[ch_output, prompt_output, custom_prompt])
