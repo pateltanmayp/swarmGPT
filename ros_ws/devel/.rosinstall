@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/jack/DSL/crazyflie_repos/crazyswarm/ros_ws/devel/setup.sh

@@ -41,7 +41,8 @@ We supply the binary image of the Crazyradio firmware in the ``/prebuilt`` direc
       To flash on the command line, check out the official Bitcraze documentation: `STM32 <https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/building-and-flashing/build/>`_, `NRF51 <https://github.com/bitcraze/crazyflie2-nrf-firmware/blob/master/docs/build/build.md>`_.
 
 2. Upgrade the firmware of your Crazyradios with the latest `official firmware <https://github.com/bitcraze/crazyradio-firmware>`_. Note that this is even required for newly bought Crazyradios.
-
+    
+    #. ``git clone https://github.com/bitcraze/crazyradio-firmware.git``
     #. ``python crazyradio-firmware/usbtools/launchBootloader.py``
     #. ``sudo python crazyradio-firmware/usbtools/nrfbootload.py flash prebuilt/cradio.bin``
     #. Now unplug and re-plug the radio. You can check the version using ``rosrun crazyflie_tools scan -v``, which should report ``Found Crazyradio with version 99.55``.
@@ -95,6 +96,12 @@ First, select your tracking system in the appropriate tab below.
 
       If using ``libobjecttracker`` as ``object_tracking_type`` disable all assets and make sure that labeled or unlabeled markers are being streamed.
 
+      .. note::
+         If you have trouble with receiving data, you can try the following.
+         
+         * If your PC has multiple interfaces, set "motion_capture_interface_ip" to the IP of the interface that you want to use.
+         * If you use an older/unsupported Motive version, try setting "optitrack_closed_source" as "motion_capture_type".
+
    .. tab:: Qualisys
 
       Qualisys has been tested to work with QTM 2.16 both for rigid body and point cloud. It is expected to work with any later version of QTM.
@@ -131,6 +138,18 @@ First, select your tracking system in the appropriate tab below.
           enable_logging_pose: True
 
       (This only works for debugging when connected to a few drones.)
+
+
+   .. tab:: Nokov
+
+      Nokov is fully supported and tested with XING 1.0.0.2456.
+      Set the host name of the Nokov machine:
+
+      .. code-block:: yaml
+
+          # ros_ws/src/crazyswarm/launch/hover_swarm.launch
+          motion_capture_type: "nokov"
+          motion_capture_host_name: "10.1.1.198" # hostname or IP address
 
 Select object tracking mode (motion capture only)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

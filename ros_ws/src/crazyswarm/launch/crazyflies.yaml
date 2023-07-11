@@ -1,0 +1,33 @@
+crazyflies:
+
+- channel: 80
+  id: 1
+  # initialPosition: [-0.5, -0.5, 0.0]
+  initialPosition: [-1, 0, 0.0] # 3 drone formation
+  type: medium
+
+- channel: 80
+  id: 3
+  # initialPosition: [-0.5, 0, 0.0]
+  initialPosition: [-0.5, -0.5, 0.0] # 3 drone formation
+  type: medium
+
+- channel: 80
+  id: 4
+  initialPosition: [0.5, -0.5, 0.0]
+  type: medium
+
+- channel: 80
+  id: 5
+  initialPosition: [1, 0, 0.0]
+  type: medium
+
+- channel: 80
+  id: 8
+  initialPosition: [0.5, 0.5, 0.0]
+  type: medium
+
+- channel: 80
+  id: 9
+  initialPosition: [-0.5, 0.5, 0.0]
+  type: medium

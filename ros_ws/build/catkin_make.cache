@@ -1,0 +1,2 @@
+crazyflie_tools:crazyswarm:externalDependencies/libobjecttracker
+-DCATKIN_DEVEL_PREFIX=/home/jack/DSL/crazyflie_repos/crazyswarm/ros_ws/devel -DCMAKE_INSTALL_PREFIX=/home/jack/DSL/crazyflie_repos/crazyswarm/ros_ws/install -G Unix Makefiles

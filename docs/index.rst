@@ -3,10 +3,15 @@
 Welcome to Crazyswarm's documentation!
 ======================================
 
+.. warning::
+   Crazyswarm1 is not recommended for new projects and has no/minimal maintainance.
+   Please use `Crazyswarm2 <https://imrclab.github.io/crazyswarm2/>`_ instead.
+
+
 The Crazyswarm platform allows you to fly a swarm of
 `Bitcraze Crazyflie 2.x <https://www.bitcraze.io/products/crazyflie-2-1/>`_ and `Bitcraze Crazyflie Bolt-based <https://store.bitcraze.io/products/crazyflie-bolt>`_ 
 quadcopters in tight, synchronized formations.
-Different localization systems are supported: LightHouse, LPS, and motion capture. The Crazyswarm is particularly optimized for motion capture systems and supports VICON, OptiTrack, and Qualisys.
+Different localization systems are supported: LightHouse, LPS, and motion capture. The Crazyswarm is particularly optimized for motion capture systems and supports VICON, NOKOV, OptiTrack, and Qualisys.
 We successfully flew 49 Crazyflies using three Crazyradios.
 An example video for what you can do is shown below:
 
@@ -57,7 +62,7 @@ Crazyswarm's academic origins
 The Crazyswarm architecture, including some motivation for the design decisions, is described in
 `our paper <http://usc-actlab.github.io/publications/Preiss_ICRA2017.pdf>`_ [pdf].
 
-A talk at the `Aerial Swarms Workshop <https://lis2.epfl.ch/iros2019swarms/index.html>`_ at IROS 2019 includes a primer on how to use the Crazyswarm and a bibliography of papers using the Crazyswarm: `Slides <https://drive.google.com/file/d/15favAyrLLpC_O6nrAp-eIbZijFUMLgwV/view?usp=sharing>`_ [pdf].
+A talk at the `BAM days 2021 <https://www.bitcraze.io/about/events/bam2021/>`_ includes a primer on how to use the Crazyswarm and a bibliography of papers using the Crazyswarm: `Slides <https://www.bitcraze.io/about/events/documents/bam2021/hoenig_crazyswarm_bam2021.pdf>`__ [pdf], `Video <https://youtu.be/9KlfFpv6NIQ>`__ [youtube].
 
 
 If you use our work in academic research, please cite us:
@@ -90,6 +95,7 @@ Contents
    changelog
    gettingstarted
    installation
+   overview
    configuration
    tutorials/tutorials
    howto/howto

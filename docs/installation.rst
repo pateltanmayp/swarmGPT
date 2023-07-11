@@ -52,7 +52,7 @@ Click the appropriate tab(s) below to see the installation instructions for your
             4. Create the Anaconda environment with your desired Python version::
 
                 $ cd crazyswarm
-                $ conda create --name crazyswarm python=$CSW_PYTHON
+                $ conda create --name crazyswarm python=[2.7 or 3.7]
                 $ conda env update -f conda_env.yaml
 
             5. Activate the Anaconda environment::
@@ -66,6 +66,7 @@ Click the appropriate tab(s) below to see the installation instructions for your
             7. Verify the installation by running the unit tests::
 
                 $ cd ros_ws/src/crazyswarm/scripts
+                $ source ../../../devel/setup.bash
                 $ $CSW_PYTHON -m pytest
 
          .. tab:: Linux without Anaconda
@@ -79,23 +80,31 @@ Click the appropriate tab(s) below to see the installation instructions for your
                .. program-output:: python3 generate_install_deps_code.py ../.github/workflows/ci-ros.yml | sed -e '/ros/d' -e '/usb/d'
                   :shell:
 
-            3. Install the optional dependencies::
+            3. Install one or more visualizers for simulation::
+
+                (Recommended)
+                $ ${CSW_PYTHON} -m pip install vispy
+                (Alternative)
+                $ ${CSW_PYTHON} -m pip install matplotlib
+
+            4. [OPTIONAL] Install ffmpeg if you want to record high-quality videos from the simulator::
 
                 $ sudo apt install -y ffmpeg
                 $ ${CSW_PYTHON} -m pip install ffmpeg-python
 
-            4. Clone the Crazyswarm git repository::
+            5. Clone the Crazyswarm git repository::
 
                 $ git clone https://github.com/USC-ACTLab/crazyswarm.git
 
-            5. Run the build script::
+            6. Run the build script::
 
                 $ cd crazyswarm
                 $ ./buildSimOnly.sh
 
-            6. Verify the installation by running the unit tests::
+            7. Verify the installation by running the unit tests::
 
                 $ cd ros_ws/src/crazyswarm/scripts
+                $ source ../../../devel/setup.bash
                 $ $CSW_PYTHON -m pytest
 
 
@@ -117,21 +126,28 @@ Click the appropriate tab(s) below to see the installation instructions for your
          .. program-output:: python3 generate_install_deps_code.py ../.github/workflows/ci-ros.yml
             :shell:
 
-      4. Install the optional dependencies::
+      4. Install one or more visualizers for simulation::
+
+          (Recommended)
+          $ ${CSW_PYTHON} -m pip install vispy
+          (Alternative)
+          $ ${CSW_PYTHON} -m pip install matplotlib
+
+      5. [OPTIONAL] Install ffmpeg if you want to record high-quality videos from the simulator::
 
           $ sudo apt install -y ffmpeg
           $ ${CSW_PYTHON} -m pip install ffmpeg-python
 
-      5. Clone the Crazyswarm git repository::
+      6. Clone the Crazyswarm git repository::
 
           $ git clone https://github.com/USC-ACTLab/crazyswarm.git
 
-      6. Run the build script::
+      7. Run the build script::
 
           $ cd crazyswarm
           $ ./build.sh
 
-      7. Verify the installation by running the unit tests::
+      8. Verify the installation by running the unit tests::
 
           $ cd ros_ws/src/crazyswarm/scripts
           $ source ../../../devel/setup.bash
